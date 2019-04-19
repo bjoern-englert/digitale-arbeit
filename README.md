@@ -1,1 +1,2 @@
-# digitale-arbeit
+# Digitale Arbeit
+## Modul __JavaScript__ (Vertiefung)
