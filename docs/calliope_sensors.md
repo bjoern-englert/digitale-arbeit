@@ -1,7 +1,6 @@
 # Der Calliope im Überblick
 
-![]
-_Quelle: https://lab.open-roberta.org/
+![Übersicht über die Funktionen des Calliope](./pdf/calliopemini_poster_hardware_mqh.png)
 
 ## Sensoren
 
@@ -17,11 +16,13 @@ _Quelle: https://lab.open-roberta.org/
 4. Mikrofon  
    Das eingebaute Mikrofon liefert Werte zwischen 0 und 100 (Prozent).  
 
-(5) Neigungssensor
-(6) Beschleunigungssensor
-(7) 
+5. Neigungssensor
 
-Lautsprecher  
+6. Bewegungssensor
 
-Pins 0 - 3
-(Minus- und Pluspin)
+7. Kompass
+
+## Weitere Ein- bzw. Ausgabe  
+1. Lautsprecher  
+2. Pins 0 - 3 (Datenpins)  
+3. Pin Minus und Plus (externe Stromversorgung)  
