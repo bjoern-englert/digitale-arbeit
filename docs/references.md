@@ -7,6 +7,7 @@
 # Informationen zu JavaScript  
 * Kleine aber feine deutschsprachige Dokumentation https://molily.de/js/  
 * Eloquent JavaScript, english https://eloquentjavascript.net/  
+* Online Tutorial https://www.jshero.net/home.html  
 
 
 # Sandboxes zum Ausprobieren
