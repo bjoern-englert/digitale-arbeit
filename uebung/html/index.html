@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>Übung zur Vertiefung von JavaScript</title>
+</head>
+
+<body>
+<main>
+	<form id="requestForm" name="requestForm">
+		<fieldset>
+            <legend>Abfrageformular</legend>
+            <label for="name">Name der Badestelle: </label><input id="name" type="text">
+            <button type="submit" formmethod="POST">Absenden</button>
+		</fieldset>
+    </form>
+    <hr />
+    <div id="results"></div>
+</main>
+<!-- Run Scripts after loading the page -->
+<script>
+/**
+* @description  - Simple request for OpenData Berlin, Badestellen
+* @see {@link https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/liste-der-badestellen/} - Liste der Badestellen vom LaGeSo
+* @see {@link https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/liste-der-badestellen/index.php/index/all.json?q=} - JSON-Endpunkt
+*/
+
+// function to request and handling the answer
+function apiRequest(event) {
+    event.preventDefault(); // prevent page reload
+    node.innerHTML = ''; // delete entries in node
+    
+    let searchpattern = RegExp(event.currentTarget.name.value, 'i');
+    let searchresult = []; // where the searchresult(s) should be saved
+    
+    // recursion
+    function searchInJSON(json, searchpattern) {
+            for (let pos in json) {
+                if (typeof(json[pos]) === 'object' ||   Array.isArray(json[pos]) === true) {
+                    searchInJSON(json[pos], searchpattern);
+                }
+                else {
+                    if (searchpattern.test(json[pos])) {
+                        console.log('Hooray! ' + pos + ' = ' + json[pos]);
+                        searchresult.push(json); // add result to array
+                        return searchresult;
+                        }
+                }
+            }
+            return searchresult;
+        }
+
+    // callback when request and search succeeds
+    function renderResult(searchresult) {
+        //console.log(searchresult);
+        searchresult.map( function(index) {
+            node.innerHTML += `<ul>
+                               <li>Badname: <strong>${index['badname']}</strong></li>
+                               <li>Temperatur: ${index['temp']}</li>
+                               <li>Wasserqualität: ${index['wasserqualitaet']}</li>
+                               </ul>`;
+        });
+    }
+    
+    let badeRequest = fetch('https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/liste-der-badestellen/index.php/index/all.json?q=')
+        .then( function(response) { return response.json(); })
+        .then( function(json) {  
+            //console.log(json);
+            return searchInJSON(json, searchpattern); 
+            })
+        .then( function(result) { 
+            //console.log(result);
+            return renderResult(result); 
+            });
+}
+
+// identify the HTML-Element to write results to
+let formElement = document.getElementById("requestForm");
+
+// define node where to render results
+let node = document.getElementById("results");
+
+// register an EventListener that listens for submit calls our request function
+formElement.addEventListener("submit", apiRequest, false);
+</script>
+</body>
+</html>
