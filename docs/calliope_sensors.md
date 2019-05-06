@@ -2,6 +2,10 @@
 
 ![Übersicht über die Funktionen des Calliope](./pdf/calliopemini_poster_hardware_mqh.png)
 
+## Quellenhinweise  
+
+Das PDF-Dokument (bzw. das PNG) ["Hallo, Calliope Mini"](https://calliope.cc/content/3-schulen/1-schulmaterial/calliopemini_poster_hardware.pdf) von [callliope.cc](https://calliope.cc/schulen/schulmaterial) ist lizensiert unter [CC-BY](https://creativecommons.org/licenses/by/2.0/de/).
+
 ## Sensoren
 
 1. Temperatursensor  
