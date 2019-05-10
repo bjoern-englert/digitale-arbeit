@@ -19,11 +19,11 @@ Das Inputfeld erhält ein _id_ Attribut, damit später mit JavaScript darauf zug
 ### Skriptbereich  
 Am Seitenende wird mit dem Tag __< script >__ der Bereich definiert, in dem JavaScript-Anweisungen aufgeführt werden.  
 Das hat den Vorteil, dass zunächst die Seite vollständig geladen und erst dann die Anweisungen des Scripts ausgeführt werden.  
-Über das Attribut _id_ geben wir zum einen dem Formular sowie dem <div>-Block eine eindeutige Bezeichnung, um diese Bereiche später mit JavaScript adressieren zu können.  
+Über das Attribut _id_ geben wir zum einen dem Formular sowie dem __< div >__-Block eine eindeutige Bezeichnung, um diese Bereiche später mit JavaScript adressieren zu können.  
 
 ### Das Script im Detail  
 1. Wir speichern das Formular anhand seiner _id_ in der Variablen "formElement".  
-2. Wir speichern den <div>-Block, in den wir später das Ergebnis ausgeben wollen in der Variablen "node".  
+2. Wir speichern den __< div >__-Block, in den wir später das Ergebnis ausgeben wollen in der Variablen "node".  
 3. Auf dem Formular bzw. der Variablen registrieren wir einen EventListener, welcher auf das Event "submit" (also das Absenden des Formulars) reagiert und die Funktion "apiRequest" ausführt.  
 4. Nun schreiben wir die Funktion "apiRequest" selbst.
 
