@@ -26,28 +26,32 @@
 
 // function to request and handling the answer
 function apiRequest(event) {
+    console.clear();
     event.preventDefault(); // prevent page reload
     node.innerHTML = ''; // delete entries in node
     
-    let searchpattern = RegExp(event.currentTarget.name.value, 'i');
+    let searchpattern = RegExp(event.currentTarget.name.value, 'i'); // case insensitive
     let searchresult = []; // where the searchresult(s) should be saved
     
-    // recursion
-    function searchInJSON(json, searchpattern) {
-            for (let pos in json) {
-                if (typeof(json[pos]) === 'object' ||   Array.isArray(json[pos]) === true) {
-                    searchInJSON(json[pos], searchpattern);
-                }
-                else {
-                    if (searchpattern.test(json[pos])) {
-                        console.log('Hooray! ' + pos + ' = ' + json[pos]);
-                        searchresult.push(json); // add result to array
-                        return searchresult;
-                        }
+    function simpleSearch(searchObj, searchpattern){
+        
+        // extract array with content-objects
+        let searchArray = searchObj["index"];
+
+        // run through array execute searchfunction
+        searchArray.map( function(obj){
+            // run through every enumerable property of object
+            for (let pos in obj){
+                // compare searchpattern (regex) with property
+                if (searchpattern.test(obj[pos])){
+                    searchresult.push(obj);
+                    console.log('Yeah! Ein Treffer');
+                    break;
                 }
             }
-            return searchresult;
-        }
+        });
+        return searchresult;
+    }
 
     // callback when request and search succeeds
     function renderResult(searchresult) {
@@ -65,7 +69,7 @@ function apiRequest(event) {
         .then( function(response) { return response.json(); })
         .then( function(json) {  
             //console.log(json);
-            return searchInJSON(json, searchpattern); 
+            return simpleSearch(json, searchpattern); 
             })
         .then( function(result) { 
             //console.log(result);
